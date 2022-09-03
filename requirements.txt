@@ -65,9 +65,7 @@ scipy==1.8.0
 sklearn-crfsuite==0.3.6
 
 soupsieve==2.3.1
-spacy @ https://github.com/explosion/spacy 
-spacy-legacy @ https://github.com/explosion/spacy-legacy
-spacy-loggers @ https://github.com/explosion/spacy-loggers
+
 spacy-wordnet==0.0.5
 tabulate==0.8.9
 
