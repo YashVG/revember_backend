@@ -1,30 +1,10 @@
-appnope @ file:///Users/runner/miniforge3/conda-bld/appnope_1635819647402/work
-argon2-cffi @ file:///opt/conda/conda-bld/argon2-cffi_1645000214183/work
-argon2-cffi-bindings @ file:///opt/concourse/worker/volumes/live/0628405f-5e68-4591-7d86-fffe9a78a449/volume/argon2-cffi-bindings_1644569695448/work
-attrs @ file:///opt/conda/conda-bld/attrs_1642510447205/work
-autopep8 @ file:///opt/conda/conda-bld/autopep8_1639166893812/work
-Babel @ file:///tmp/build/80754af9/babel_1620871417480/work
-backcall @ file:///home/conda/feedstock_root/build_artifacts/backcall_1592338393461/work
-backports.functools-lru-cache @ file:///home/conda/feedstock_root/build_artifacts/backports.functools_lru_cache_1618230623929/work
+
 beautifulsoup4==4.10.0
-bleach @ file:///opt/conda/conda-bld/bleach_1641577558959/work
-blis @ file:///Users/runner/miniforge3/conda-bld/cython-blis_1636053595927/work
 Bottleneck==1.3.2
-brotlipy @ file:///Users/runner/miniforge3/conda-bld/brotlipy_1636012310340/work
 bs4==0.0.1
 CacheControl==0.12.11
 cachetools==5.2.0
-catalogue @ file:///Users/runner/miniforge3/conda-bld/catalogue_1638867373001/work
 certifi==2021.10.8
-cffi @ file:///opt/concourse/worker/volumes/live/506ff722-306a-4142-6379-cfea99aadbed/volume/cffi_1625814701363/work
-charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1641584610847/work
-click @ file:///Users/runner/miniforge3/conda-bld/click_1635822681337/work
-colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1602866480661/work
-cryptography @ file:///Users/runner/miniforge3/conda-bld/cryptography_1639699399793/work
-cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
-cymem @ file:///Users/runner/miniforge3/conda-bld/cymem_1636053268887/work
-dataclasses @ file:///home/conda/feedstock_root/build_artifacts/dataclasses_1628958434797/work
-debugpy @ file:///Users/runner/miniforge3/conda-bld/debugpy_1636043372408/work
 decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_1641555617451/work
 defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
 en-core-web-lg @ https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-3.2.0/en_core_web_lg-3.2.0-py3-none-any.whl
