@@ -116,7 +116,6 @@ pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_16367570
 pyrsistent @ file:///opt/concourse/worker/volumes/live/ac52847c-5646-4583-7286-af47061006cb/volume/pyrsistent_1636111017177/work
 PySocks @ file:///Users/runner/miniforge3/conda-bld/pysocks_1635862551662/work
 pyspellchecker==0.6.3
-
 python-crfsuite==0.9.7
 python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
 pytz==2021.3
