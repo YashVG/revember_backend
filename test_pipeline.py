@@ -15,4 +15,5 @@ def text_cleaner():
     return sentences
 
 
+
 sentences = text_cleaner()

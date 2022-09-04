@@ -15,9 +15,6 @@ db = firestore.client()
 todo_ref = db.collection('test')
 
 
-todo_ref.add({"name": "johnny la", "age": 40})
 
 # @app.route('/add', methods=['POST'])
 # def create():
-
-

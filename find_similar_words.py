@@ -3,7 +3,7 @@ import spacy
 
 nlp = spacy.load("en_core_web_lg")
 
-your_word = "gun"
+your_word = 'test'
 
 ms = nlp.vocab.vectors.most_similar(
     np.asarray([nlp.vocab.vectors[nlp.vocab.strings[your_word]]]), n=400)
