@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 
 
+
 # initialise Firebase
 cred = credentials.Certificate('key.json')
 default_app = initialize_app(cred)
@@ -15,6 +16,6 @@ db = firestore.client()
 todo_ref = db.collection('test')
 
 
-
-# @app.route('/add', methods=['POST'])
-# def create():
+@app.route("/")
+def hello_world():
+    return "Hello, World!"
