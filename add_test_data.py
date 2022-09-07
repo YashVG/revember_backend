@@ -1,11 +1,7 @@
 
 from firebase import db #imports firebase client
 
-data = {
-    u'name': u'Los Angeles',
-    u'state': u'CA',
-    u'country': u'USA'
-}
+
 
 
 def add_test_data():
