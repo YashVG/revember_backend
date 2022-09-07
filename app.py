@@ -22,5 +22,5 @@ def response():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    add_test_data.add_test_data()
+    app.run(host='0.0.0.0')
+    # add_test_data.add_test_data()
