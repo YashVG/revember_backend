@@ -2,6 +2,7 @@ from crypt import methods
 from flask import Flask, jsonify, request
 from firebase_admin import credentials, firestore, initialize_app
 import add_test_data
+from metrics import metrics
 from ocr import scan_text
 from difficulty import final_function
 
@@ -38,6 +39,10 @@ def question_generator():
 @app.route('/difficulty_measure', methods=['GET', 'POST']) # type: ignore #TODO: rename methods to avoid confusion
 def difficulty_measure():
     final_function() # re-do other functions like this where querying is done in separate files
+
+@app.route('/metrics', methods=['GET', 'POST'])  # type: ignore , although it works, find out why "type None can't be assigned to (..)"
+def analyze():
+    metrics()
 
 
 # @app.route('/ocr', methods=['GET', 'POST'])
