@@ -1,10 +1,21 @@
 from crypt import methods
 from flask import Flask, jsonify, request
 from firebase_admin import credentials, firestore, initialize_app
-import add_test_data
-from metrics import metrics
-from ocr import scan_text
-from difficulty import final_function
+
+app = Flask(__name__)
 
 
+@app.route('/api', methods=['GET', 'POST'])
+def endpoint_handler(endpoint):
+    if request.method == 'GET':
+        # Handle GET request
+        pass
+    elif request.method == 'POST':
+        # Handle POST request
+        pass
+    else:
+        return jsonify({'error': 'Method not supported'})
 
+
+if __name__ == '__main__':
+    app.run(debug=True)
