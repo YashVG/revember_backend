@@ -7,17 +7,23 @@ numbers = [date]
 # add date to first index to show it's correct, then randomise when added to
 # question queue in Flutter
 
+difference = 15
+lower_range = 10
+upper_range = 20
 
-def big_difference(date):
+
+def big_difference(date, difference):
     # check if absolute difference between rearranged dates is more than 15
     # only last two values are swapped, so only compare them
-    if abs(int(date[len(date)-2:]) - int(date[len(date)-2:][::-1])) > 15:
+    if abs(int(date[len(date)-2:]) - int(date[len(date)-2:][::-1])) > difference:
         return True
     else:
         return False
 
 
-def rearrangment_method(user_input):
+# adding parameters bypass Python parameter error, and supercedes error handling
+# therefore answer choices are generated without error messages
+def rearrangment_method(user_input, l, u):
     # dates may be 3 or 2 numbers in length in special circumstances
     # hence list slicing and reversing last two char numbers
     final_date = user_input[:-2]
@@ -27,24 +33,37 @@ def rearrangment_method(user_input):
     return final_date
 
 
-def randomiser_method(user_input):
+def randomiser_method(user_input, l, u):
     user_input = int(user_input)
-    rnge_of_date = random.randint(5, 20)
-    return user_input+rnge_of_date or user_input-rnge_of_date
+    range_of_date = random.randint(l, u)
+    return (user_input+range_of_date) or (user_input-range_of_date)
 
 
-if big_difference(date) == True:
-    for i in range(3):
-        numbers.append(randomiser_method(date))  # type: ignore
+for i in range(1, 4):
 
-else:
-    fns = [rearrangment_method, randomiser_method]
-    for i in range(3):
-        if choice(fns) == rearrangment_method:
-            numbers.append(choice(fns)(date))
-            fns.remove(rearrangment_method)
-        else:
-            numbers.append(choice(fns)(date))
+    if big_difference(date, difference) == True:
+        for i in range(3):
+            numbers.append(randomiser_method(
+                date, lower_range, upper_range))  # type: ignore
+
+    else:
+        # if rearrangement used, then remove from list and just randomise
+        # else randomise if and until you rearrange the values
+        fns = [randomiser_method, rearrangment_method]
+        for i in range(3):
+            if choice(fns) == 1:
+                numbers.append(rearrangment_method(
+                    date, lower_range, upper_range))
+                fns.remove(rearrangment_method)
+            else:
+                if choice(fns) == 1:
+                    numbers.append(choice(fns)(date))
+                else:
+                    numbers.append(choice(fns)(date, lower_range, upper_range))
+
+    difference -= 4
+    lower_range -= 5
+    upper_range -= 5
 
 answer_choices = [str(num) for num in numbers]
 print(answer_choices)
