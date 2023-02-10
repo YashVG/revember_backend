@@ -1,9 +1,5 @@
 import random
 
-stat1 = 190000
-stat2 = 6.456
-stat3 = 31
-
 # checks if modifieid numerical string can be changed to integer
 
 
