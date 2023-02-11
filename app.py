@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, jsonify, request
 from firebase_admin import credentials, firestore, initialize_app
 

@@ -50,11 +50,7 @@ def generate_numerical_answers(value):
         # because the length of the number is less than 2, doing a percentage
         # wise generation won't make sense, hence generating random int vals
         elif is_integer(value) == True:
-            # value = int(value)
-            # for i in range(3):
-            #     rand_int = random.randint(1, 10)
-            #     if rand_int not in answer_choices:
-            #         answer_choices.append(rand_int)
+
             possible_numbers = [x for x in range(1, 10) if x != int(value)]
             rand_ints = random.sample(possible_numbers, 3)
             for i in rand_ints:
