@@ -3,6 +3,8 @@ import spacy
 from cosine_sim import word2vec, cosdis
 import random
 
+# TODO: state that you can't simplify function because modularizing it results in an API fail call
+
 
 def generate_similar_words(word):
     # TODO: remove later if needed
@@ -11,7 +13,7 @@ def generate_similar_words(word):
     vc_index = nlp.vocab.strings[word]
     # generates word vector for word in spacy's vocabulary consisting of vectors
     word_vector = np.asarray([nlp.vocab.vectors[vc_index]])
-    # finds the 100 most similar words
+    # finds the 200 most similar words
     most_similar = nlp.vocab.vectors.most_similar(word_vector, n=200)
     # normalized version of indexes ranging from 0-1 to make processing less resource consuming
     semantic_similarities = most_similar[2]
@@ -49,21 +51,68 @@ def add_hard_words(inp):
                 else:
                     pass
     # create new lists to deal with duplicates with different capitalizations
-    hard_answer_choices = [inp.lower()]
+    return answer_choosing(inp, answer_choices)
+
+
+def add_medium_words(inp):
+    answer_choices = [inp]
+    inp_vector = word2vec(inp)
+    sw, sd = generate_similar_words(inp)
+    for i in range(len(list(sw))):
+        word_vector = word2vec(sw[i])
+        # if cos sim is greater than 0.8, that means the word is very similar
+        # therefore skip over to next word in list
+        if cosdis(inp_vector, word_vector) > 0.75:
+            pass
+        else:
+            # print(sd[0][i])
+            # adds words with given range below
+            if 0.58 <= sd[0][i] <= 0.7:
+                answer_choices.append(sw[i])
+            else:
+                pass
+    # create new lists to deal with duplicates with different capitalizations
+    return answer_choosing(inp, answer_choices)
+
+
+def add_easy_words(inp):
+    answer_choices = [inp]
+    inp_vector = word2vec(inp)
+    sw, sd = generate_similar_words(inp)
+    for i in range(len(list(sw))):
+        word_vector = word2vec(sw[i])
+        # if cos sim is greater than 0.8, that means the word is very similar
+        # therefore skip over to next word in list
+        if cosdis(inp_vector, word_vector) > 0.75:
+            pass
+        else:
+            # print(sd[0][i])
+            # adds words with given range below
+            if 0.44 <= sd[0][i] <= 0.57:
+                answer_choices.append(sw[i])
+            else:
+                pass
+    # create new lists to deal with duplicates with different capitalizations
+    return answer_choosing(inp, answer_choices)
+
+
+def answer_choosing(inp, answer_choices):
+    raw_answer_choices = [inp.lower()]
+
+    # decapitalizes everything, and ensures no duplicate input
     cleaning_list = []
     for i in answer_choices:
         cleaning_list.append(i.lower())
     cleaning_list = list(set(cleaning_list))
     cleaning_list.remove(inp.lower())
-    # for i in cleaning_list:
-    #     hard_answer_choices.append(i)
+
+    # adds three random words from answer list to output list
     new_list = random.sample(cleaning_list, 3)
     for i in new_list:
-        hard_answer_choices.append(i)
-    return hard_answer_choices
-
-# after getting lots of answers, the next function will compare the word to the input
-# and determine whether it's the same type of word
+        raw_answer_choices.append(i)
+    return raw_answer_choices
 
 
 print(add_hard_words('Russia'))
+print(add_medium_words('Russia'))
+print(add_easy_words('Russia'))
