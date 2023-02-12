@@ -40,36 +40,33 @@ def choose_ents(entities):
 
 def find_ents():
     final_lst = choose_ents(entities)
-
     counter = 0
     for i in final_lst:
         if len(i) == 1:
-            print()
-            print(i[0][0])
-            if i[0][0] in duplicate_text[counter]:
-                print(duplicate_text[counter])
-
+            pass
+            # print()
+            # print(i[0][0])
+            # if i[0][0] in duplicate_text[counter]:
+            #     print(duplicate_text[counter])
         else:
-
             comparing_ents = []
-            print()
+            # print()
             for ent in i:
-                print(ent)
+                # print(ent)
                 comparing_ents.append(ent)
-            print()
+            # print()
             final_ent = hierarchy_check(comparing_ents)
-            print(final_ent)
+            # print(final_ent)
             final_lst.remove(i)
-            final_lst.append(final_ent)
+            final_lst.append([final_ent])
+            # re-creating into 3D matrix is better for security conventions
         counter += 1
-
-    print(final_lst)
+    return final_lst
 
 
 def hierarchy_check(multiple_ent_list):
     return_lst = []
     for i in multiple_ent_list:
-
         # check if in first priority entities
         # make sure to either break out of loop or return statement implemented
         if i[1] in first_pri_ents or first_nu_ents:

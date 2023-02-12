@@ -113,6 +113,6 @@ def answer_choosing(inp, answer_choices):
     return raw_answer_choices
 
 
-print(add_hard_words('Russia'))
-print(add_medium_words('Russia'))
-print(add_easy_words('Russia'))
+# print(add_hard_words('Russia'))
+# print(add_medium_words('Russia'))
+# print(add_easy_words('Russia'))
