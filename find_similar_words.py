@@ -88,7 +88,7 @@ def add_easy_words(inp):
         else:
             # print(sd[0][i])
             # adds words with given range below
-            if 0.44 <= sd[0][i] <= 0.57:
+            if sd[0][i] <= 0.57:
                 answer_choices.append(sw[i])
             else:
                 pass
@@ -103,16 +103,22 @@ def answer_choosing(inp, answer_choices):
     cleaning_list = []
     for i in answer_choices:
         cleaning_list.append(i.lower())
-    cleaning_list = list(set(cleaning_list))
-    cleaning_list.remove(inp.lower())
+    new_cleaning_list = list(set(cleaning_list))
+    new_cleaning_list.remove(inp.lower())
+    if len(new_cleaning_list) > 3:
+        # adds three random words from answer list to output list
+        # if initial list is more than 3
+        new_list = random.sample(new_cleaning_list, 3)
+        for i in new_list:
+            raw_answer_choices.append(i)
+        return raw_answer_choices
+    else:
+        # if not bigger than three, just return initial list
+        # and filter in final answer generation
+        return cleaning_list
 
-    # adds three random words from answer list to output list
-    new_list = random.sample(cleaning_list, 3)
-    for i in new_list:
-        raw_answer_choices.append(i)
-    return raw_answer_choices
 
-
-# print(add_hard_words('Russia'))
-# print(add_medium_words('Russia'))
-# print(add_easy_words('Russia'))
+# print(add_hard_words('Supreme'))
+# print(add_hard_words('1559'))
+# print(add_medium_words('Elizabeth'))
+# print(add_easy_words('Elizabeth'))
