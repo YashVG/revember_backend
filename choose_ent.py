@@ -8,7 +8,7 @@ from list_of_ents import first_pri_ents, second_pri_ents, third_pri_ents, first_
 ###
 processed_text = process_text('test-text.txt')
 entities = ner(processed_text)
-duplicate_text = [i.text for i in processed_text]
+# duplicate_text = [i.text for i in processed_text]
 ###
 
 

@@ -2,6 +2,10 @@ import random
 
 # checks if modifieid numerical string can be changed to integer
 
+# TODO: Mention that there's no difference in the numbers generated for diff %
+# because either the values are too obscure or produces duplicates, therefore
+# rendering them useless when the user answers the questions
+
 
 def is_integer(string):
     try:
@@ -59,6 +63,6 @@ def generate_numerical_answers(value):
         return answer_choices
 
 
-print(generate_numerical_answers('123.2'))
-print(generate_numerical_answers('12343'))
-print(generate_numerical_answers('1'))
+# print(generate_numerical_answers('123.2'))
+# print(generate_numerical_answers('12343'))
+# print(generate_numerical_answers('1'))

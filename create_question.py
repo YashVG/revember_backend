@@ -3,6 +3,10 @@ from ner_file import ner
 
 from text_cleaner import process_text
 
+from date_gen import generate_easy_dates, generate_hard_dates, generate_medium_dates
+
+from stats_gen import generate_numerical_answers
+
 from choose_ent import find_ents
 
 from find_similar_words import add_easy_words, add_hard_words, add_medium_words, add_safety_words
@@ -43,16 +47,27 @@ def add_questions(final_lst_ents):
     count = 0
     for i in final_lst_ents:
         for ent in i:
-            print(ent)
-            print(duplicate_text[count])
+
             question = duplicate_text[count].replace(ent[0], "_____")
             question_lst.append(question)
 
         count += 1
-    print()
-    for i in question_lst:
-        print(i)
+
     return question_lst
+
+
+def check_empty_list(lst4):
+    # 3D matrix, like that in generate_answer_choices
+    # in case one answer list is empty, duplicate another one in place of it
+    for overall_answer_choices in lst4:
+        for i in range(len(overall_answer_choices)):
+            if len(overall_answer_choices[i]) == 0:
+                try:
+                    overall_answer_choices[i] = overall_answer_choices[i+1]
+                except:
+                    overall_answer_choices[i] = overall_answer_choices[i-1]
+
+    return lst4
 
 
 def generate_answer_choices(lst3):
@@ -73,15 +88,25 @@ def generate_answer_choices(lst3):
 
             elif (ent[1] in first_nu_ents) or (ent[1] in second_nu_ents) or (ent[1] in third_nu_ents):
                 if ent[1] == 'DATE':
-                    ...
-    for i in answer_lst:
-        print(i)
+                    hard_dates = generate_hard_dates(ent[0])
+                    medium_dates = generate_medium_dates(ent[0])
+                    easy_dates = generate_easy_dates(ent[0])
+                    answer_lst.append([hard_dates, medium_dates, easy_dates])
+                else:
+                    hard_numbers = generate_numerical_answers(ent[0])
+                    medium_numbers = generate_numerical_answers(ent[0])
+                    easy_numbers = generate_numerical_answers(ent[0])
+                    answer_lst.append(
+                        [hard_numbers, medium_numbers, easy_numbers])
+    answer_lst = check_empty_list(answer_lst)
+    return answer_lst
 
 
 # add_questions(final_lst_ents)
 # print(final_lst_ents)
 # print()
-generate_answer_choices(final_lst_ents)
+print(add_questions(final_lst_ents))
+print(generate_answer_choices(final_lst_ents))
 # print(check_length_of_answer_list(
 #     ['elizabeth'])
 # )
