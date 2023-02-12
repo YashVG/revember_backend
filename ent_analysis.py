@@ -6,33 +6,33 @@ def percentage_of_entities():
 
     # change or delete later depending on pipeline built in the end
     ###
-    processed_text = process_text('test-text.txt')
-    entities = ner(processed_text)
-    duplicate_text = [i.text for i in processed_text]
+    processedText = process_text('test-text.txt')
+    entities = ner(processedText)
+    duplicateText = [i.text for i in processedText]
     ###
 
-    length_of_notes = []
-    no_of_entities = []
-    percentage_of_entities = []
+    lengthOfNotes = []
+    noOfEntities = []
+    percentageOfEntities = []
 
     # counts no of entities in each note
-    for i in duplicate_text:
+    for i in duplicateText:
         counter = 0
-        entity = entities[duplicate_text.index(i)]
+        entity = entities[duplicateText.index(i)]
         for y in entity:
             counter += 1
-        no_of_entities.append(counter)
+        noOfEntities.append(counter)
     #
     # counts number of words in each note
-    for i in processed_text:
-        length_of_notes.append(len(i))
+    for i in processedText:
+        lengthOfNotes.append(len(i))
     #
     # calculates percentage of named entities per note (per word, not per character)
-    for i, j in zip(no_of_entities, length_of_notes):
+    for i, j in zip(noOfEntities, lengthOfNotes):
         percentage = round((i/j)*100)
-        percentage_of_entities.append(percentage)
+        percentageOfEntities.append(percentage)
 
-    return percentage_of_entities
+    return percentageOfEntities
 
 
 print(percentage_of_entities())

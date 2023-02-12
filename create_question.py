@@ -1,4 +1,4 @@
-import random
+
 from ner_file import ner
 
 from text_cleaner import process_text
@@ -15,98 +15,97 @@ from list_of_ents import first_nu_ents, first_pri_ents, second_nu_ents, second_p
 
 # change or delete later depending on pipeline built in the end
 ###
-processed_text = process_text('test-text.txt')
-entities = ner(processed_text)
-duplicate_text = [i.text for i in processed_text]
-final_lst_ents = find_ents()
+processedText = process_text('test-text.txt')
+entities = ner(processedText)
+duplicateText = [i.text for i in processedText]
+finalLstEnts = find_ents()
 ###
 
 
-def check_length_of_answer_list(answer_list):
-    output_lst = []
-    if len(answer_list) != 4:
-        if len(answer_list) < 4:
-            output_lst = add_safety_words(answer_list)
-        elif len(answer_list) > 4:
-            answer = answer_list[0]
+def check_length_of_answer_list(answerList):
+    outputLst = []
+    if len(answerList) != 4:
+        if len(answerList) < 4:
+            outputLst = add_safety_words(answerList)
+        elif len(answerList) > 4:
+            answer = answerList[0]
             # first element remains unchanged, and is always the correct answer
-            modified_list = answer_list[1:]
-            if len(list(set(modified_list))) == 3:
-                for i in list(set(modified_list)):
-                    output_lst.append(i)
+            modifiedList = answerList[1:]
+            if len(list(set(modifiedList))) == 3:
+                for i in list(set(modifiedList)):
+                    outputLst.append(i)
 
-                output_lst.append(answer)
-                output_lst = output_lst[::-1]
+                outputLst.append(answer)
+                outputLst = outputLst[::-1]
     else:
-        return answer_list
-    return output_lst
+        return answerList
+    return outputLst
 
 
-def add_questions(final_lst_ents):
-    question_lst = []
+def add_questions(finalLstEnts):
+    questionLst = []
     count = 0
-    for i in final_lst_ents:
+    for i in finalLstEnts:
         for ent in i:
-
-            question = duplicate_text[count].replace(ent[0], "_____")
-            question_lst.append(question)
+            question = duplicateText[count].replace(ent[0], "_____")
+            questionLst.append(question)
 
         count += 1
 
-    return question_lst
+    return questionLst
 
 
 def check_empty_list(lst4):
     # 3D matrix, like that in generate_answer_choices
     # in case one answer list is empty, duplicate another one in place of it
-    for overall_answer_choices in lst4:
-        for i in range(len(overall_answer_choices)):
-            if len(overall_answer_choices[i]) == 0:
+    for overallAnswerChoices in lst4:
+        for i in range(len(overallAnswerChoices)):
+            if len(overallAnswerChoices[i]) == 0:
                 try:
-                    overall_answer_choices[i] = overall_answer_choices[i+1]
+                    overallAnswerChoices[i] = overallAnswerChoices[i+1]
                 except:
-                    overall_answer_choices[i] = overall_answer_choices[i-1]
+                    overallAnswerChoices[i] = overallAnswerChoices[i-1]
 
     return lst4
 
 
 def generate_answer_choices(lst3):
-    answer_lst = []
+    answerLst = []
     for i in lst3:
         for ent in i:
             # print(ent[0])
             if (ent[1] in first_pri_ents) or (ent[1] in second_pri_ents) or (ent[1] in third_pri_ents):
                 # print(ent[1])
-                hard_answers = check_length_of_answer_list(
+                hardAnswers = check_length_of_answer_list(
                     add_hard_words(ent[0]))
-                medium_answers = check_length_of_answer_list(
+                mediumAnswers = check_length_of_answer_list(
                     add_medium_words(ent[0]))
-                easy_answers = check_length_of_answer_list(
+                easyAnswers = check_length_of_answer_list(
                     add_easy_words(ent[0]))
-                answer_lst.append([hard_answers, medium_answers, easy_answers])
+                answerLst.append([hardAnswers, mediumAnswers, easyAnswers])
                 break
 
             elif (ent[1] in first_nu_ents) or (ent[1] in second_nu_ents) or (ent[1] in third_nu_ents):
                 if ent[1] == 'DATE':
-                    hard_dates = generate_hard_dates(ent[0])
-                    medium_dates = generate_medium_dates(ent[0])
-                    easy_dates = generate_easy_dates(ent[0])
-                    answer_lst.append([hard_dates, medium_dates, easy_dates])
+                    hardDates = generate_hard_dates(ent[0])
+                    mediumDates = generate_medium_dates(ent[0])
+                    easyDates = generate_easy_dates(ent[0])
+                    answerLst.append([hardDates, mediumDates, easyDates])
                 else:
-                    hard_numbers = generate_numerical_answers(ent[0])
-                    medium_numbers = generate_numerical_answers(ent[0])
-                    easy_numbers = generate_numerical_answers(ent[0])
-                    answer_lst.append(
-                        [hard_numbers, medium_numbers, easy_numbers])
-    answer_lst = check_empty_list(answer_lst)
-    return answer_lst
+                    hardNumbers = generate_numerical_answers(ent[0])
+                    mediumNumbers = generate_numerical_answers(ent[0])
+                    easyNumbers = generate_numerical_answers(ent[0])
+                    answerLst.append(
+                        [hardNumbers, mediumNumbers, easyNumbers])
+    answerLst = check_empty_list(answerLst)
+    return answerLst
 
 
 # add_questions(final_lst_ents)
 # print(final_lst_ents)
 # print()
-print(add_questions(final_lst_ents))
-print(generate_answer_choices(final_lst_ents))
+print(add_questions(finalLstEnts))
+print(generate_answer_choices(finalLstEnts))
 # print(check_length_of_answer_list(
 #     ['elizabeth'])
 # )

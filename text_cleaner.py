@@ -7,7 +7,7 @@ import re
 
 
 def process_text(text_dir):
-    list_of_processed_notes = []
+    listOfProcessedNotes = []
 
     nlp = spacy.load("en_core_web_lg")
 
@@ -28,9 +28,9 @@ def process_text(text_dir):
             i.replace('\n', '')
     # removes any leading or trailing whitespaces inputted by the user
         i = i.strip()
-        list_of_processed_notes.append(nlp(i))
+        listOfProcessedNotes.append(nlp(i))
 
     # removes first element which is always a blank space
-    list_of_processed_notes.pop(0)
+    listOfProcessedNotes.pop(0)
 
-    return list_of_processed_notes
+    return listOfProcessedNotes
