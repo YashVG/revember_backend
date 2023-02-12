@@ -3,7 +3,7 @@ import spacy
 from cosine_sim import word2vec, cosdis
 import random
 
-# TODO: state that you can't simplify function because modularizing it results in an API fail call
+# can't simplify function because modularizing it results in an API fail call
 
 
 def generate_similar_words(word):
@@ -39,7 +39,7 @@ def add_hard_words(inp):
             pass
         else:
             word_vector = word2vec(sw[i])
-            # if cos sim is greater than 0.8, that means the word is very similar
+            # if cos sim is greater than 0.75, that means the word is very similar
             # therefore skip over to next word in list
             if cosdis(inp_vector, word_vector) > 0.75:
                 pass
@@ -60,7 +60,7 @@ def add_medium_words(inp):
     sw, sd = generate_similar_words(inp)
     for i in range(len(list(sw))):
         word_vector = word2vec(sw[i])
-        # if cos sim is greater than 0.8, that means the word is very similar
+        # if cos sim is greater than 0.75, that means the word is very similar
         # therefore skip over to next word in list
         if cosdis(inp_vector, word_vector) > 0.75:
             pass
@@ -81,7 +81,7 @@ def add_easy_words(inp):
     sw, sd = generate_similar_words(inp)
     for i in range(len(list(sw))):
         word_vector = word2vec(sw[i])
-        # if cos sim is greater than 0.8, that means the word is very similar
+        # if cos sim is greater than 0.75, that means the word is very similar
         # therefore skip over to next word in list
         if cosdis(inp_vector, word_vector) > 0.75:
             pass
