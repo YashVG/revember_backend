@@ -96,6 +96,21 @@ def add_easy_words(inp):
     return answer_choosing(inp, answer_choices)
 
 
+def add_safety_words(list_of_answers):
+    output = []
+    # list_of_answers will always be less than 4
+    no_of_extra_words = 4 - len(list_of_answers)
+    sw, sd = generate_similar_words(list_of_answers[0])
+    for i in range(len(list(sw))):
+        if 0.58 <= sd[0][i] <= 0.7:
+            output.append((sw[i]).lower())
+
+    output = random.sample(output, no_of_extra_words)
+    output.append(list_of_answers[0])
+    output = output[::-1]
+    return output
+
+
 def answer_choosing(inp, answer_choices):
     raw_answer_choices = [inp.lower()]
 
