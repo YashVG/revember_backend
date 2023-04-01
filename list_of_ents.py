@@ -1,7 +1,7 @@
-first_pri_ents = ('GPE', 'ORG', 'NORP', 'PERSON')
-second_pri_ents = ('WORK_OF_ART', 'LAW', 'FAC', 'LOC', 'PRODUCT', 'LANGUAGE')
-third_pri_ents = ('PROPN', 'NOUN')
+FIRST_PRI_ENTS = ('GPE', 'ORG', 'NORP', 'PERSON')
+SECOND_PRI_ENTS = ('WORK_OF_ART', 'LAW', 'FAC', 'LOC', 'PRODUCT', 'LANGUAGE')
+THIRD_PRI_ENTS = ('PROPN', 'NOUN')
 
-first_nu_ents = ('CARDINAL', 'PERCENT', 'MONEY', 'QUANTITY', 'DATE')
-second_nu_ents = ('ORDINAL', 'TIME')
-third_nu_ents = ('NUMERAL')
+FIRST_NU_ENTS = ('CARDINAL', 'PERCENT', 'MONEY', 'QUANTITY', 'DATE')
+SECOND_NU_ENTS = ('ORDINAL', 'TIME')
+THIRD_NU_ENTS = ('NUMERAL')

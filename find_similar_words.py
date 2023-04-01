@@ -3,7 +3,7 @@ import spacy
 from cosine_sim import word2vec, cosdis
 import random
 
-# can't simplify easy,medium or hard functions because modularizing it further results in failed API calls
+# can't simplify easy, medium or hard functions because modularizing it further results in failed API calls
 
 
 def generate_similar_words(word):
@@ -131,9 +131,3 @@ def answer_choosing(inp, answer_choices):
         # if not bigger than three, just return initial list
         # and filter in final answer generation
         return cleaningList
-
-
-# print(add_hard_words('Supreme'))
-# print(add_hard_words('1559'))
-# print(add_medium_words('Elizabeth'))
-# print(add_easy_words('Elizabeth'))

@@ -4,13 +4,17 @@ from firebase_admin import credentials, firestore, initialize_app
 app = Flask(__name__)
 
 
-@app.route('/api', methods=['GET'])
-def returnascii():
+@app.route('/get_notes', methods=['GET'])
+def get_questions():
     d = {}
     inputchr = str(request.args['query'])
-    answer = str(ord(inputchr))
-    d['output'] = answer
+    d['output'] = inputchr
     return d
+
+
+@app.route('/post_answers', methods=['POST'])
+def send_answers():
+    outputData =
 
 
 if __name__ == "__main__":

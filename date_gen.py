@@ -1,7 +1,6 @@
 from random import choice
 import random
 
-
 # add date to first index to show it's correct, then randomise when added to
 # question queue in Flutter
 

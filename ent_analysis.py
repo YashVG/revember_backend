@@ -10,7 +10,6 @@ def percentage_of_entities():
     entities = ner(processedText)
     duplicateText = [i.text for i in processedText]
     ###
-
     lengthOfNotes = []
     noOfEntities = []
     percentageOfEntities = []

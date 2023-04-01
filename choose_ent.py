@@ -2,13 +2,12 @@
 from ner_file import ner
 
 from text_cleaner import process_text
-from list_of_ents import first_pri_ents, second_pri_ents, third_pri_ents, first_nu_ents, second_nu_ents, third_nu_ents
+from list_of_ents import FIRST_PRI_ENTS, SECOND_PRI_ENTS, THIRD_PRI_ENTS, FIRST_NU_ENTS, SECOND_NU_ENTS, THIRD_NU_ENTS
 
-# change or delete later depending on pipeline built in the end
+
 ###
 processedText = process_text('test-text.txt')
 entities = ner(processedText)
-# duplicate_text = [i.text for i in processed_text]
 ###
 
 
@@ -61,11 +60,11 @@ def hierarchy_check(multipleEntList):
     for i in multipleEntList:
         # check if in first priority entities
         # make sure to either break out of loop or return statement implemented
-        if i[1] in first_pri_ents or first_nu_ents:
+        if i[1] in FIRST_PRI_ENTS or FIRST_NU_ENTS:
             returnLst = i
             break
         else:
-            if i[1] in second_nu_ents or second_pri_ents:
+            if i[1] in SECOND_NU_ENTS or SECOND_PRI_ENTS:
                 returnLst = i
 
             else:

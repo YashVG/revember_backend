@@ -11,7 +11,7 @@ from choose_ent import find_ents
 
 from find_similar_words import add_easy_words, add_hard_words, add_medium_words, add_safety_words
 
-from list_of_ents import first_nu_ents, first_pri_ents, second_nu_ents, second_pri_ents, third_nu_ents, third_pri_ents
+from list_of_ents import FIRST_NU_ENTS, FIRST_PRI_ENTS, SECOND_NU_ENTS, SECOND_PRI_ENTS, THIRD_NU_ENTS, THIRD_PRI_ENTS
 
 # change or delete later depending on pipeline built in the end
 ###
@@ -74,7 +74,7 @@ def generate_answer_choices(lst3):
     for i in lst3:
         for ent in i:
             # print(ent[0])
-            if (ent[1] in first_pri_ents) or (ent[1] in second_pri_ents) or (ent[1] in third_pri_ents):
+            if (ent[1] in FIRST_PRI_ENTS) or (ent[1] in SECOND_PRI_ENTS) or (ent[1] in THIRD_PRI_ENTS):
                 # print(ent[1])
                 hardAnswers = check_length_of_answer_list(
                     add_hard_words(ent[0]))
@@ -85,7 +85,7 @@ def generate_answer_choices(lst3):
                 answerLst.append([hardAnswers, mediumAnswers, easyAnswers])
                 break
 
-            elif (ent[1] in first_nu_ents) or (ent[1] in second_nu_ents) or (ent[1] in third_nu_ents):
+            elif (ent[1] in FIRST_NU_ENTS) or (ent[1] in SECOND_NU_ENTS) or (ent[1] in THIRD_NU_ENTS):
                 if ent[1] == 'DATE':
                     hardDates = generate_hard_dates(ent[0])
                     mediumDates = generate_medium_dates(ent[0])
@@ -104,8 +104,12 @@ def generate_answer_choices(lst3):
 # add_questions(final_lst_ents)
 # print(final_lst_ents)
 # print()
-print(add_questions(finalLstEnts))
-print(generate_answer_choices(finalLstEnts))
+x = add_questions(finalLstEnts)
+y = generate_answer_choices(finalLstEnts)
 # print(check_length_of_answer_list(
 #     ['elizabeth'])
 # )
+for i in x:
+    print(i)
+for i in y:
+    print(i)
