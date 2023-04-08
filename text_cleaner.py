@@ -13,8 +13,8 @@ def process_text(text_dir):
 
 # test-text will simulate how the data will be sent from the Flutter app
 # modularise this when loaded into text file
-    with open(text_dir, 'r') as file:
-        data = file.read()
+    with open(text_dir, 'r') as f:
+        data = f.read()
         data = data.split('-')
         text = data
 # cleaned text with hypens removed from input data

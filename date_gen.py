@@ -53,7 +53,7 @@ def generate_easy_dates(date):
                 fns.remove(rearrangment_method)
             else:
                 if choice(fns) == 1:
-                    noList.append(choice(fns)(date))
+                    noList.append(choice(fns)(date))  # type: ignore
                 else:
                     noList.append(choice(fns)(
                         date, 10, 30))
@@ -77,7 +77,7 @@ def generate_medium_dates(date):
                 fns.remove(rearrangment_method)
             else:
                 if choice(fns) == 1:
-                    noList.append(choice(fns)(date))
+                    noList.append(choice(fns)(date))  # type: ignore
                 else:
                     noList.append(choice(fns)(
                         date, 7, 20))
@@ -103,7 +103,7 @@ def generate_hard_dates(date):
                 fns.remove(rearrangment_method)
             else:
                 if choice(fns) == 1:
-                    noList.append(choice(fns)(date))
+                    noList.append(choice(fns)(date))  # type: ignore
                 else:
                     noList.append(choice(fns)(
                         date, 5, 15))
