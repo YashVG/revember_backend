@@ -66,7 +66,6 @@ def hierarchy_check(multipleEntList):
         else:
             if i[1] in SECOND_NU_ENTS or SECOND_PRI_ENTS:
                 returnLst = i
-
             else:
                 returnLst = i
 
