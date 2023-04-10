@@ -18,7 +18,7 @@ from list_of_ents import FIRST_NU_ENTS, FIRST_PRI_ENTS, SECOND_NU_ENTS, SECOND_P
 processedText = process_text('test-text.txt')
 entities = ner(processedText)
 duplicateText = [i.text for i in processedText]
-finalLstEnts = find_ents()
+finalLstEnts = find_ents(entities)
 ###
 
 
@@ -42,15 +42,22 @@ def check_length_of_answer_list(answerList):
     return outputLst
 
 
-def add_questions(finalLstEnts):
+def add_questions(finalLstEnts, duplicateText):
     questionLst = []
-    count = 0
-    for i in finalLstEnts:
-        for ent in i:
-            question = duplicateText[count].replace(ent[0], "_____")
-            questionLst.append(question)
+    for i in duplicateText:
+        for ent in finalLstEnts:
+            if ent[0][0] in i:
+                question = i.replace(ent[0][0], "_____")
+                questionLst.append(question)
 
-        count += 1
+    # for i in finalLstEnts:
+    #     for ent in i:
+    #         print(ent)
+    #         question = duplicateText[count].replace(ent[0], '_____')
+    #         print(question)
+    #         questionLst.append(question)
+
+        # count += 1
 
     return questionLst
 
@@ -69,9 +76,9 @@ def check_empty_list(lst4):
     return lst4
 
 
-def generate_answer_choices(lst3):
+def generate_answer_choices(listOfEntities):
     answerLst = []
-    for i in lst3:
+    for i in listOfEntities:
         for ent in i:
             # print(ent[0])
             if (ent[1] in FIRST_PRI_ENTS) or (ent[1] in SECOND_PRI_ENTS) or (ent[1] in THIRD_PRI_ENTS):
@@ -101,15 +108,12 @@ def generate_answer_choices(lst3):
     return answerLst
 
 
-# add_questions(final_lst_ents)
-# print(final_lst_ents)
-# print()
-x = add_questions(finalLstEnts)
-y = generate_answer_choices(finalLstEnts)
+# x = add_questions(finalLstEnts, duplicateText)
+# y = generate_answer_choices(finalLstEnts)
 # print(check_length_of_answer_list(
 #     ['elizabeth'])
 # )
-for i in x:
-    print(i)
-for i in y:
-    print(i)
+# for i in x:
+#     print(i)
+# for i in y:
+#     print(i)

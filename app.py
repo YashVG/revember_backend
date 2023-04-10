@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask import Flask, jsonify, request
 from firebase_admin import credentials, firestore, initialize_app
+from choose_ent import find_ents
 from firebase import db  # imports firebase client
 import spacy
 from text_cleaner import process_the_text
@@ -43,7 +44,20 @@ def createQuestions():  # type: ignore
         cleanText = process_the_text(data[0], nlp)
         entities = ner(cleanText)
         duplicateText = [i.text for i in cleanText]
+        finalLstEnts = find_ents(entities)
 
+        questionList = add_questions(finalLstEnts, duplicateText)
+        print(questionList)
+
+        answer_choices = generate_answer_choices(finalLstEnts)
+        print(answer_choices)
+        doc_ref = db.collection(u'test').document(
+            data[1]).collection(u'questions').document(id_generator())
+        doc_ref.set({
+            u'name': questionList[0],
+            u'answers': answer_choices[0][0]
+
+        })
         return jsonify({'message': 'Data received and processed successfully!'}), 200
 
 

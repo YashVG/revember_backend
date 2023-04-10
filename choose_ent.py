@@ -21,6 +21,7 @@ def has_spaces(ent):
 
 
 def choose_ents(entities):
+
     checkingList = []
     listOfEnts = []
     for i in entities:
@@ -37,8 +38,9 @@ def choose_ents(entities):
     return filteredList
 
 
-def find_ents():
+def find_ents(entities):
     finalLst = choose_ents(entities)
+
     counter = 0
     for i in finalLst:
         if len(i) == 1:
@@ -52,6 +54,7 @@ def find_ents():
             finalLst.append([finalEnt])
             # re-creating into 3D matrix is better for security conventions
         counter += 1
+
     return finalLst
 
 
@@ -94,4 +97,3 @@ def remove_duplicate_ents(lst):
 
 
 # print(add_ents(entities))
-find_ents()
