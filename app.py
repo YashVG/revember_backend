@@ -7,7 +7,7 @@ import spacy
 from text_cleaner import process_the_text
 from ner_file import ner
 from ent_analysis import percentage_of_entities
-from create_question import check_length_of_answer_list, add_questions, check_empty_list, generate_answer_choices
+from create_question import add_questions,  generate_answer_choices
 
 app = Flask(__name__)
 
@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 def id_generator():
     now = datetime.now()
-    return str(now.microsecond)
+    return now.strftime("%Y%m%d%H%M%S%f")[:-3]
 
 
 @app.route('/stats', methods=['POST', 'PUT'])  # type: ignore
@@ -51,13 +51,41 @@ def createQuestions():  # type: ignore
 
         answer_choices = generate_answer_choices(finalLstEnts)
         print(answer_choices)
-        doc_ref = db.collection(u'test').document(
-            data[1]).collection(u'questions').document(id_generator())
-        doc_ref.set({
-            u'name': questionList[0],
-            u'answers': answer_choices[0][0]
 
-        })
+        # add easy questions and answers
+        for i in range(len(questionList)):
+            doc_ref = db.collection(u'generated_questions').document(
+                data[1]).collection(u'easy_questions').document(id_generator())
+            doc_ref.set({
+                u'name': questionList[i],
+                u'answers': answer_choices[i][0]
+            })
+
+        # add medium questions and answers
+        for i in range(len(questionList)):
+            doc_ref = db.collection(u'generated_questions').document(
+                data[1]).collection(u'medium_questions').document(id_generator())
+            doc_ref.set({
+                u'name': questionList[i],
+                u'answers': answer_choices[i][1]
+            })
+
+        # add hard questions and answers
+        for i in range(len(questionList)):
+            doc_ref = db.collection(u'generated_questions').document(
+                data[1]).collection(u'hard_questions').document(id_generator())
+            doc_ref.set({
+                u'name': questionList[i],
+                u'answers': answer_choices[i][2]
+            })
+
+        # doc_ref = db.collection(u'generated_questions').document(
+        #     data[1]).collection(u'easy_questions').document(id_generator())
+        # doc_ref.set({
+        #     u'name': questionList[0],
+        #     u'answers': answer_choices[0][0]
+        # })
+
         return jsonify({'message': 'Data received and processed successfully!'}), 200
 
 
