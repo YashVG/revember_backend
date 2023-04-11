@@ -11,10 +11,6 @@ from create_question import add_questions,  generate_answer_choices
 
 app = Flask(__name__)
 
-# @app.route('/hello')
-# def hello():
-#     return 'Hello, World!'
-
 
 def id_generator():
     now = datetime.now()
@@ -78,13 +74,6 @@ def createQuestions():  # type: ignore
                 u'name': questionList[i],
                 u'answers': answer_choices[i][2]
             })
-
-        # doc_ref = db.collection(u'generated_questions').document(
-        #     data[1]).collection(u'easy_questions').document(id_generator())
-        # doc_ref.set({
-        #     u'name': questionList[0],
-        #     u'answers': answer_choices[0][0]
-        # })
 
         return jsonify({'message': 'Data received and processed successfully!'}), 200
 

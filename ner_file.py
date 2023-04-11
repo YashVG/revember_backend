@@ -1,9 +1,6 @@
 # assume input is a list of NLP doc objects as shown in text_cleaner.py
-
-from text_cleaner import process_text
-
-
-processedText = process_text('test-text.txt')
+# from text_cleaner import process_text
+# processedText = process_text('test-text.txt')
 
 
 def ner(processed_text):

@@ -1,7 +1,6 @@
 import random
 
 # checks if modifieid numerical string can be changed to integer
-
 # there's no difference in the numbers generated for diff %
 # because either the values are too obscure or produces duplicates, therefore
 # rendering them useless when the user answers the questions

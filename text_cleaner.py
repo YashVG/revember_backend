@@ -40,7 +40,6 @@ def process_the_text(text_string, nlp):
     listOfProcessedNotes = []
     text_string = text_string.split('-')
 # regex comands to remove non-Latin characters
-
     for i in text_string:
         i = re.sub(r'[^\x00-\x7f]', r'', i)
         # removes unecessary new lines with null space

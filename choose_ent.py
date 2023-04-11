@@ -1,13 +1,12 @@
 
-from ner_file import ner
-
-from text_cleaner import process_text
-from list_of_ents import FIRST_PRI_ENTS, SECOND_PRI_ENTS, THIRD_PRI_ENTS, FIRST_NU_ENTS, SECOND_NU_ENTS, THIRD_NU_ENTS
+# from ner_file import ner
+# from text_cleaner import process_text
+from list_of_ents import FIRST_PRI_ENTS, SECOND_PRI_ENTS, FIRST_NU_ENTS, SECOND_NU_ENTS
 
 
 ###
-processedText = process_text('test-text.txt')
-entities = ner(processedText)
+# processedText = process_text('test-text.txt')
+# entities = ner(processedText)
 ###
 
 
