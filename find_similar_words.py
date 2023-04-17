@@ -88,7 +88,7 @@ def add_easy_words(inp):
         else:
             # print(sd[0][i])
             # adds words with given range below
-            if similarDistances[0][i] <= 0.57:
+            if similarDistances[0][i] <= 0.6:
                 answerChoices.append(similarWords[i])
             else:
                 pass

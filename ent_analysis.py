@@ -64,4 +64,4 @@ def percentage_of_entities(processedText, entities):
     return percentageOfEntities
 
 
-# print(percentage_of_the_entities())
+print(percentage_of_the_entities())
