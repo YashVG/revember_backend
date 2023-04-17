@@ -47,13 +47,11 @@ def add_questions(finalLstEnts, duplicateText):
     count = 0
 
     for i in finalLstEnts:
-           for ent in i:
-                print(ent)
-                question = duplicateText[count].replace(ent[0], '_____')
-                print(question)
-                questionLst.append(question)
-
-            count += 1
+        for ent in i:
+            print(ent)
+            question = duplicateText[count].replace(ent[0], '_____')
+            print(question)
+            questionLst.append(question)
 
     return questionLst
 
